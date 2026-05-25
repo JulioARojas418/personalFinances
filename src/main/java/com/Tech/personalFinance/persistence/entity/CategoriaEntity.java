@@ -4,17 +4,16 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "categorias")
-public class Categoria {
+public class CategoriaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
     private Integer idCategoria;
 
+    @Column(nullable = false)
     private String nombre;
 
-    public Categoria() {
-    }
 
     public Integer getIdCategoria() {
         return idCategoria;

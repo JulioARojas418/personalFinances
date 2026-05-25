@@ -5,34 +5,36 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "movimientos")
-public class Movimiento {
+public class MovimientoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_movimiento")
     private Integer idMovimiento;
 
+    @Column(nullable = false)
     private String titulo;
 
     private String descripcion;
 
+    @Column(nullable = false)
     private Double monto;
 
+    @Column(nullable = false)
     private LocalDate fecha;
 
     @Column(name = "tipo_movimiento")
     private String ingresoGasto;
 
     @ManyToOne
-    @JoinColumn(name = "id_categoria")
-    private Categoria categoria;
+    @JoinColumn(name = "idCategoria", insertable=false, updatable=false)
+    private CategoriaEntity categoria;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
+    @JoinColumn(name = "idUsuario", insertable=false, updatable=false)
+    private UsuarioEntity usuario;
 
-    public Movimiento() {
-    }
+
 
     public Integer getIdMovimiento() {
         return idMovimiento;
@@ -82,19 +84,19 @@ public class Movimiento {
         this.ingresoGasto = ingresoGasto;
     }
 
-    public Categoria getCategoria() {
+    public CategoriaEntity getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(CategoriaEntity categoria) {
         this.categoria = categoria;
     }
 
-    public Usuario getUsuario() {
+    public UsuarioEntity getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
     }
 }

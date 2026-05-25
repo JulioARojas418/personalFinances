@@ -1,22 +1,28 @@
 package com.Tech.personalFinance.persistence.entity;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+public class UsuarioEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Integer idUsuario;
 
+    @Column(nullable = false)
     private String nombre;
+
+    @Column(nullable = false)
     private String apellido;
 
     @Column(name = "id_tipo_documento")
     private Integer idTipoDocumento;
 
+    @Column(nullable = false)
     private String documento;
 
     @Column(name = "id_perfil")
@@ -25,8 +31,8 @@ public class Usuario {
     @Column(name = "id_rol")
     private Integer idRol;
 
-    public Usuario() {
-    }
+    @OneToMany(mappedBy = "usuario")
+    private List<MovimientoEntity> movimientos;
 
     public Integer getIdUsuario() {
         return idUsuario;
