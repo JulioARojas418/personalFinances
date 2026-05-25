@@ -35,18 +35,6 @@ public class UsuarioEntity {
     @OneToMany(mappedBy = "usuario")
     private List<MovimientoEntity> movimientos;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<MetaEntity> metas;
-
-
-    public List<MetaEntity> getMetas() {
-        return metas;
-    }
-
-    public void setMetas(List<MetaEntity> metas) {
-        this.metas = metas;
-    }
-
     public Integer getIdUsuario() {
         return idUsuario;
     }

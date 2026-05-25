@@ -25,7 +25,7 @@ public class MetaEntity {
     private double monto;
 
     @ManyToOne
-    @JoinColumn(name = "idUsuario", insertable = false, updatable = false)
+    @JoinColumn(name = "idUsuario")
     private UsuarioEntity usuario;
     
 
