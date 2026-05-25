@@ -31,8 +31,21 @@ public class UsuarioEntity {
     @Column(name = "id_rol")
     private Integer idRol;
 
+
     @OneToMany(mappedBy = "usuario")
     private List<MovimientoEntity> movimientos;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<MetaEntity> metas;
+
+
+    public List<MetaEntity> getMetas() {
+        return metas;
+    }
+
+    public void setMetas(List<MetaEntity> metas) {
+        this.metas = metas;
+    }
 
     public Integer getIdUsuario() {
         return idUsuario;
@@ -88,6 +101,14 @@ public class UsuarioEntity {
 
     public void setIdRol(Integer idRol) {
         this.idRol = idRol;
+    }
+
+    public List<MovimientoEntity> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(List<MovimientoEntity> movimientos) {
+        this.movimientos = movimientos;
     }
 
 }
