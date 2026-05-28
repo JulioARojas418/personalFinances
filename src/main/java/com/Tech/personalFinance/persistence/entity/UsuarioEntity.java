@@ -19,21 +19,41 @@ public class UsuarioEntity {
     @Column(nullable = false)
     private String apellido;
 
-    @Column(name = "id_tipo_documento")
-    private Integer idTipoDocumento;
+    @ManyToOne
+    @JoinColumn(name = "idTipoDocumento")
+    private TipoDocumentoEntity tipoDocumento;
 
     @Column(nullable = false)
     private String documento;
 
-    @Column(name = "id_perfil")
-    private Integer idPerfil;
+    @OneToOne
+    @JoinColumn(name = "idPerfil", unique = true)
+    private PerfilEntity perfil;   
 
-    @Column(name = "id_rol")
-    private Integer idRol;
+    @ManyToOne
+    @JoinColumn(name = "idRol")
+    private RolEntity rol;
 
 
     @OneToMany(mappedBy = "usuario")
     private List<MovimientoEntity> movimientos;
+
+    
+    public PerfilEntity getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(PerfilEntity perfil) {
+        this.perfil = perfil;
+    }
+
+    public RolEntity getRol() {
+        return rol;
+    }
+
+    public void setRol(RolEntity rol) {
+        this.rol = rol;
+    }
 
     public Integer getIdUsuario() {
         return idUsuario;
@@ -57,15 +77,7 @@ public class UsuarioEntity {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public Integer getIdTipoDocumento() {
-        return idTipoDocumento;
-    }
-
-    public void setIdTipoDocumento(Integer idTipoDocumento) {
-        this.idTipoDocumento = idTipoDocumento;
-    }
+    }       
 
     public String getDocumento() {
         return documento;
@@ -73,23 +85,7 @@ public class UsuarioEntity {
 
     public void setDocumento(String documento) {
         this.documento = documento;
-    }
-
-    public Integer getIdPerfil() {
-        return idPerfil;
-    }
-
-    public void setIdPerfil(Integer idPerfil) {
-        this.idPerfil = idPerfil;
-    }
-
-    public Integer getIdRol() {
-        return idRol;
-    }
-
-    public void setIdRol(Integer idRol) {
-        this.idRol = idRol;
-    }
+    }   
 
     public List<MovimientoEntity> getMovimientos() {
         return movimientos;
@@ -97,6 +93,14 @@ public class UsuarioEntity {
 
     public void setMovimientos(List<MovimientoEntity> movimientos) {
         this.movimientos = movimientos;
+    }
+
+    public TipoDocumentoEntity getTipoDocumento() {
+        return tipoDocumento;
+    }
+
+    public void setTipoDocumento(TipoDocumentoEntity tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
 
 }
