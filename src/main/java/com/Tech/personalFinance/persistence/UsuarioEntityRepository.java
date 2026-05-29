@@ -45,8 +45,14 @@ public class UsuarioEntityRepository implements IUsuarioRepository{
 
     @Override
     public UsuarioDto update(Integer id, UsuarioInsertDto usuarioInsertDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        UsuarioEntity usuarioEntity = this.crudUsuarioEntity.findById(id).orElse(null);
+
+        if (usuarioEntity == null)
+            return null;
+        
+        this.usuarioMapper.updateEntity(usuarioInsertDto, usuarioEntity);
+
+        return this.usuarioMapper.toDto(this.crudUsuarioEntity.save(usuarioEntity));        
     }
 
     @Override

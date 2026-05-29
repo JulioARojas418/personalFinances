@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -47,6 +49,16 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDto> add(@RequestBody UsuarioInsertDto usuarioInsertDto) {
         UsuarioDto usuarioDto = this.usuarioService.add(usuarioInsertDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioDto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UsuarioDto> update(@PathVariable Integer id, @RequestBody UsuarioInsertDto usuarioInsertDto) {
+        UsuarioDto usuarioDto = this.usuarioService.update(id, usuarioInsertDto);
+
+        if (usuarioDto == null) 
+            return ResponseEntity.notFound().build();
+                    
+        return ResponseEntity.ok(usuarioDto);
     }
     
 }
