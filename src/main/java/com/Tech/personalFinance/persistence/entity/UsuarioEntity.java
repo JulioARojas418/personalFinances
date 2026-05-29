@@ -26,7 +26,7 @@ public class UsuarioEntity {
     @Column(nullable = false)
     private String documento;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "idPerfil", unique = true)
     private PerfilEntity perfil;   
 

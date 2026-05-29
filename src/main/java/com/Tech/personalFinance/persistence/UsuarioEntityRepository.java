@@ -57,8 +57,13 @@ public class UsuarioEntityRepository implements IUsuarioRepository{
 
     @Override
     public UsuarioDto delete(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        UsuarioEntity usuarioEntity = this.crudUsuarioEntity.findById(id).orElse(null);
+
+        if (usuarioEntity == null) 
+            return null;
+            
+        this.crudUsuarioEntity.delete(usuarioEntity);
+        return this.usuarioMapper.toDto(usuarioEntity);
     }
 
 }
