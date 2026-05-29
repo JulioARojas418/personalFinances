@@ -3,15 +3,20 @@ package com.Tech.personalFinance.web.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Tech.personalFinance.domain.dto.UsuarioDto;
+import com.Tech.personalFinance.domain.dto.UsuarioInsertDto;
 import com.Tech.personalFinance.domain.service.UsuarioService;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @RestController
@@ -36,6 +41,12 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
             
         return ResponseEntity.ok(usuarioDto);
+    }
+    
+    @PostMapping()
+    public ResponseEntity<UsuarioDto> add(@RequestBody UsuarioInsertDto usuarioInsertDto) {
+        UsuarioDto usuarioDto = this.usuarioService.add(usuarioInsertDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioDto);
     }
     
 }

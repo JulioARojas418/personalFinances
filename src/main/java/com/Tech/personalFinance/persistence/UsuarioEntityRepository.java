@@ -38,8 +38,9 @@ public class UsuarioEntityRepository implements IUsuarioRepository{
 
     @Override
     public UsuarioDto save(UsuarioInsertDto usuarioInsertDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        UsuarioEntity usuarioEntity = this.usuarioMapper.toEntity(usuarioInsertDto);
+
+        return this.usuarioMapper.toDto(this.crudUsuarioEntity.save(usuarioEntity));
     }
 
     @Override
